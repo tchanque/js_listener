@@ -4,11 +4,11 @@ var clickTimes = 0;
 
 function onFooterClick() {
     console.log("click numéro " + clickTimes);
-    clickTimes+=1;
-    
+    clickTimes += 1;
+
 };
 
-footer.addEventListener("click", onFooterClick); 
+footer.addEventListener("click", onFooterClick);
 
 // Feature 2 - Toggle the navbar when clicking on hamburger menu button
 let menuBtn = document.querySelector(".navbar-toggler")
@@ -38,7 +38,7 @@ let secondCardBtnEdit = secondCard.querySelectorAll(".btn")[1];
 let secondCardText = secondCard.querySelector(".card-text");
 
 function onSecondCardEditClick() {
-    if (secondCardText.style.color === "green"){
+    if (secondCardText.style.color === "green") {
         secondCardText.style.color = "red";
     } else secondCardText.style.color = "green";
 };
@@ -50,7 +50,7 @@ secondCardBtnEdit.addEventListener("click", onSecondCardEditClick);
 let tagLinkBootstrap = document.querySelector("link");
 // let navBar = document.querySelector(".navbar")
 let navBar = document.querySelector("header")
-console.log(navBar);
+// console.log(navBar);
 
 function navbarClickNuke() {
     if (tagLinkBootstrap.disabled) {
@@ -61,3 +61,66 @@ function navbarClickNuke() {
 navBar.addEventListener("dblclick", navbarClickNuke);
 
 // Feature 6 - if the mouser hovers View in any card, the card gets reduced
+
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+    let viewBtn = card.querySelectorAll(".btn")[0]
+    let reduceOnHover = function () {
+        let cardText = card.querySelector(".card-text")
+        let cardImg = card.querySelector("img")
+        console.log(cardImg)
+
+        // cardText.classList.toggle("collapse")
+
+        if (cardImg.style.scale === "") {
+            cardText.style.opacity = "0";
+            cardImg.style.scale = "20%"
+        } else {
+            cardImg.style.scale = "";
+            cardText.style.opacity = "";
+        }
+    }
+
+    viewBtn.addEventListener("mouseover", reduceOnHover)
+});
+
+
+// Feature 9
+
+let logo = document.querySelector("strong");
+let divLogo = document.querySelector(".navbar .container");
+let body = document.querySelector("body");
+
+// text = window.getSelection()
+
+logo.addEventListener("mouseup", onSelectLogo);
+
+function onSelectLogo(){
+    // console.log("The text is highlighted")
+    document.addEventListener("keypress", logKey);
+}
+
+function logKey(e) {
+    let keyPressed = e.key;
+
+    switch (keyPressed) {
+        case "a":
+            body.removeAttribute("class")
+            body.classList.add("col-4");
+            break;
+        case "y":
+            body.removeAttribute("class")
+            body.classList.add("col-4", "offset-md-4")
+            break;
+        case "p":
+            body.removeAttribute("class")
+            body.classList.add("col-4", "offset-md-8")
+            break;
+        case "b":
+            body.removeAttribute("class")
+            break;
+    }
+}
+
+
