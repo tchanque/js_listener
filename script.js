@@ -84,3 +84,43 @@ cards.forEach(card => {
 
     viewBtn.addEventListener("mouseover", reduceOnHover)
 });
+
+
+// Feature 9
+
+let logo = document.querySelector("strong");
+let divLogo = document.querySelector(".navbar .container");
+let body = document.querySelector("body");
+
+// text = window.getSelection()
+
+logo.addEventListener("mouseup", onSelectLogo);
+
+function onSelectLogo(){
+    // console.log("The text is highlighted")
+    document.addEventListener("keypress", logKey);
+}
+
+function logKey(e) {
+    let keyPressed = e.key;
+
+    switch (keyPressed) {
+        case "a":
+            body.removeAttribute("class")
+            body.classList.add("col-4");
+            break;
+        case "y":
+            body.removeAttribute("class")
+            body.classList.add("col-4", "offset-md-4")
+            break;
+        case "p":
+            body.removeAttribute("class")
+            body.classList.add("col-4", "offset-md-8")
+            break;
+        case "b":
+            body.removeAttribute("class")
+            break;
+    }
+}
+
+
