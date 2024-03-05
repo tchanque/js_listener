@@ -5,7 +5,6 @@ var clickTimes = 0;
 function onFooterClick() {
     console.log("click numéro " + clickTimes);
     clickTimes += 1;
-
 };
 
 footer.addEventListener("click", onFooterClick);
@@ -38,9 +37,7 @@ let secondCardBtnEdit = secondCard.querySelectorAll(".btn")[1];
 let secondCardText = secondCard.querySelector(".card-text");
 
 function onSecondCardEditClick() {
-    if (secondCardText.style.color === "green") {
-        secondCardText.style.color = "red";
-    } else secondCardText.style.color = "green";
+    secondCardText.style.color = (secondCardText.style.color === "green") ? "" : "green";
 };
 
 secondCardBtnEdit.addEventListener("click", onSecondCardEditClick);
@@ -50,7 +47,6 @@ secondCardBtnEdit.addEventListener("click", onSecondCardEditClick);
 let tagLinkBootstrap = document.querySelector("link");
 // let navBar = document.querySelector(".navbar")
 let navBar = document.querySelector("header")
-// console.log(navBar);
 
 function navbarClickNuke() {
     if (tagLinkBootstrap.disabled) {
@@ -87,29 +83,25 @@ cards.forEach(card => {
 
 // Feature 7 and 8
 leftArrowBtn = document.querySelector("main .container").querySelectorAll("a")[0];
-leftArrowBtn.href="javascript:void(0)"
 rigthArrowBtn = document.querySelector("main .container").querySelectorAll("a")[1];
-
 
 cardsParentNode = document.querySelector(".album .container .row")
 console.log(cardsParentNode)
 
-function moveCardsToRight(){
-    // event.preventDefault();
-    lastCard = cardsParentNode.querySelector("div:nth-child(6)");
-    firstCard = cardsParentNode.querySelector("div:nth-child(1)");
-    cardsParentNode.insertBefore(lastCard, firstCard);
+function moveCardsToLeft(e){
+    e.preventDefault()
+    const firstCard = cardsParentNode.firstElementChild;
+    cardsParentNode.appendChild(firstCard)
 };
 
-function moveCardsToLeft(){
-    lastCard = cardsParentNode.querySelector("div:nth-child(1)");
-    firstCard = cardsParentNode.querySelector("div:nth-child(6)");
+function moveCardsToRight(){
+    const firstCard = cardsParentNode.firstElementChild;
+    const lastCard = cardsParentNode.lastElementChild;
     cardsParentNode.insertBefore(lastCard, firstCard);
 };
 
 leftArrowBtn.addEventListener("click", moveCardsToLeft);
 rigthArrowBtn.addEventListener("click", moveCardsToRight);
-
 
 // Feature 9
 
