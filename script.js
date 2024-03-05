@@ -1,6 +1,6 @@
 // Feature 1 and 1 Bis - Print number of clicks on the footer
 var footer = document.querySelector("footer");
-var clickTimes = 0;
+var clickTimes = 1;
 
 function onFooterClick() {
     console.log("click numéro " + clickTimes);
@@ -12,7 +12,6 @@ footer.addEventListener("click", onFooterClick);
 // Feature 2 - Toggle the navbar when clicking on hamburger menu button
 let menuBtn = document.querySelector(".navbar-toggler")
 let navbarHeader = document.querySelector("#navbarHeader");
-let menuStatus = false;
 
 function onMenuClick() {
     navbarHeader.classList.toggle("collapse");
@@ -32,7 +31,6 @@ btnEdit.addEventListener("click", onEditClick);
 
 // Feature 4 - Changing 2nd card text color : toggle from green to red
 let secondCard = document.querySelectorAll(".card")[1];
-
 let secondCardBtnEdit = secondCard.querySelectorAll(".btn")[1];
 let secondCardText = secondCard.querySelector(".card-text");
 
@@ -86,15 +84,14 @@ leftArrowBtn = document.querySelector("main .container").querySelectorAll("a")[0
 rigthArrowBtn = document.querySelector("main .container").querySelectorAll("a")[1];
 
 cardsParentNode = document.querySelector(".album .container .row")
-console.log(cardsParentNode)
 
-function moveCardsToLeft(e){
+function moveCardsToLeft(e) {
     e.preventDefault()
     const firstCard = cardsParentNode.firstElementChild;
     cardsParentNode.appendChild(firstCard)
 };
 
-function moveCardsToRight(){
+function moveCardsToRight() {
     const firstCard = cardsParentNode.firstElementChild;
     const lastCard = cardsParentNode.lastElementChild;
     cardsParentNode.insertBefore(lastCard, firstCard);
@@ -106,18 +103,11 @@ rigthArrowBtn.addEventListener("click", moveCardsToRight);
 // Feature 9
 
 let logo = document.querySelector("strong");
-let divLogo = document.querySelector(".navbar .container");
 let body = document.querySelector("body");
-
-logo.addEventListener("mouseup", onSelectLogo);
-
-function onSelectLogo(){
-    document.addEventListener("keypress", logKey);
-}
 
 function logKey(e) {
     let keyPressed = e.key;
-    
+
     switch (keyPressed) {
         case "a":
             body.removeAttribute("class")
@@ -137,20 +127,16 @@ function logKey(e) {
     }
 }
 
+function onSelection(){
+    var selection = window.getSelection().toString();
+    var logoText = logo.textContent;
 
-// text = window.getSelection()
+    if (selection == logoText) {
+        // The logo was fully selected
+        document.addEventListener("keypress", logKey);
+    } else { // The selection on the logo is over => Disabling key press
+        document.removeEventListener("keypress", logKey);
+    }
+}
 
-// function selectText(){
-//     let selObj = document.getSelection();
-//     let textSelected = selObj.toString();
-//     console.log(textSelected);
-//     if(textSelected === divLogo){
-//         document.addEventListener("keypress", logKey);
-//     } else if(textSelected != divLogo){
-//         document.removeEventListener("keypress", logKey);
-//     }
-//     return
-// }
-
-// document.addEventListener("mouseup", selectText)
-
+document.addEventListener("selectionchange", onSelection);
